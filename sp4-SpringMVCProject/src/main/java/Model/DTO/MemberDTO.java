@@ -14,6 +14,7 @@ public class MemberDTO {
 	String userPh2;
 	Timestamp userRegist;
 	
+	
 	public String getUserId() {
 		return userId;
 	}

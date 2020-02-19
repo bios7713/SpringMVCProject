@@ -4,8 +4,10 @@
                xsi:schemaLocation="http://www.springframework.org/schema/beans 
                                             http://www.springframework.org/schema/beans/spring-beans.xsd" >
                     <bean class="Controller.Member.MemberController"/>
-                   
+                    <bean class="Controller.Member.LoginController"/>
+                    <bean class="Controller.Member.MainController"/>
                     <bean id="memberJoinService" class= "Service.Member.MemberJoinService"/>
                     <bean id="memberDAO" class="Model.DAO.MemberDAO"/>
+                    
 
 </beans>

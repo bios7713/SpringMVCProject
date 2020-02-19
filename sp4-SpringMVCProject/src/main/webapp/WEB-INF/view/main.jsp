@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form"  uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,21 +10,26 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<form:form action="login" name="frm" id="frm" method="post" commandName="loginCommand">  
+
 	<table border =1>	
 		<tr><td colspan="3">
-						자동 로그인 <input type="checkbox" name="autoLogin" value="auto"/>
+						자동 로그인 <form:checkbox path="autoLogin" />
 				</td>
 			</tr>
 		<tr><td>아이디 입력</td>		
 		<td>
-		<input type="text" id = "id1" name="id1">
+		<form:input  id = "id1" path="id1" />
+		<form:errors path="id1" /> 
 		</td>
-		<td> <input type="checkbox" name="idStore" value="store"/>
+		<td> <form:checkbox path="idStore" /> 아이디 저장
 		</td>	
 		</tr>
 		<tr><td>비밀번호</td>
 		<td>
-		<input type="password" id = "pw" name="pw">
+		<form:password id = "pw" path="pw"/>
+		<form:errors path="pw" />
 		</td>
 		<td ><input type="button" id = "btn" value='<spring:message code="login.title" />'>
 		</td>
@@ -34,6 +40,8 @@
 				<a href="register/agree">회원 가입</a>
 	</td> </tr>	
 	</table>
+</form:form>
+
 
  <!-- 로그인 되었을때 -->
  <a href="memberDetail">내 정보</a>
