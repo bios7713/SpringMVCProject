@@ -10,12 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- login 안됬을때 -->
 
 <form:form action="login" name="frm" id="frm" method="post" commandName="loginCommand">  
-
+<c:if test="${empty authInfo }">
 	<table border =1>	
 		<tr><td colspan="3">
-						자동 로그인 <form:checkbox path="autoLogin" />
+						자동 로그인 <form:checkbox path="autoLogin"/>
 				</td>
 			</tr>
 		<tr><td>아이디 입력</td>		
@@ -31,7 +32,7 @@
 		<form:password id = "pw" path="pw"/>
 		<form:errors path="pw" />
 		</td>
-		<td ><input type="button" id = "btn" value='<spring:message code="login.title" />'>
+		<td ><input type="submit" id = "btn" value='<spring:message code="login.title" />'>
 		</td>
 	</tr>
 	<tr> <td colspan="3"> 
@@ -40,19 +41,20 @@
 				<a href="register/agree">회원 가입</a>
 	</td> </tr>	
 	</table>
+	</c:if>
 </form:form>
 
-
+<c:if test="${!empty authInfo }">
  <!-- 로그인 되었을때 -->
  <a href="memberDetail">내 정보</a>
  <a href="logout">로그아웃</a>
- <a href="memberList">회원리스트</a>
- <a href="board">공지사항 게시판</a>
+ <a href="member/memberList">회원리스트</a>
+ <a href="board/boardList">공지사항 게시판</a>
  <a href="library">일반 자료실</a>
  <a href="answerBoard">답변형 게시판</a>
  <a href="commentBoard">댓글 게시판</a>
  <a href="goodsList">상품목록</a>
  <a href="mailForm">메일전송</a>
-
+</c:if>
  </body>
 </html>

@@ -17,7 +17,7 @@ import Model.DTO.MemberDTO;
 public class AuthService {
 	
 	@Autowired
-	private MemberDAO memberDAO;
+	private MemberDAO memberDAO;	
 	private AuthInfo authInfo;
 	
 	public void authenticate(LoginCommand loginCommand, HttpSession session , Errors errors) {
@@ -37,10 +37,19 @@ public class AuthService {
 				 		memberDTO.getUserName(),
 				        memberDTO.getUserPw()				 	
 				 );
+			 
+			if(authInfo.getPw().equals(
+					 Encrypt.getEncryption(loginCommand.getPw()))){
+				 session.setAttribute("authInfo", authInfo);				 
+			 }else {				 
+				 System.out.println("비밀번호가 다른데 ?");
+				 errors.rejectValue("pw","wrong");
+			 }
 		 
 				 
 		 }catch(Exception e) {
 			 e.printStackTrace();
+			 System.out.println("아이디 없는데?");
 			 errors.rejectValue("id1", "notId");
 			 
 		 }

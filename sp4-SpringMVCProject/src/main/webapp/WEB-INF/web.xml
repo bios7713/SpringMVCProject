@@ -20,6 +20,8 @@
 				classpath:Spring-context.xml
 				classpath:Spring-beans.xml
 				classpath:Spring-jdbc.xml
+				classpath:Spring-controller.xml
+				classpath:Spring-service.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

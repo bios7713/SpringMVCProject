@@ -18,9 +18,20 @@ import Model.DTO.MemberDTO;
 
 public class MemberDAO {
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	public MemberDAO(DataSource dataSource) {
+
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
 	final String COLUMNS = " user_id, user_pw, user_name, user_birth, "
 			+ " user_gender, user_email, user_addr, user_ph1, "
 			+ " user_ph2 , user_regist";
+	final String COLUMNS1 = " user_id, user_pw, user_name, user_birth, "
+			+ " user_gender, user_email, user_addr, user_ph1, " 
+			+ " user_ph2 ";
+
+
 	private RowMapper<MemberDTO> memRowMapper = 
 			new RowMapper<MemberDTO>() {
 		public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -39,15 +50,10 @@ public class MemberDAO {
 		}
 	};
 
-	@Autowired
-	public MemberDAO(DataSource dataSource) {
-
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
 
 	public Integer insertMember ( MemberDTO memberDTO) {
 		Integer i = 0;
-		String sql = " INSERT INTO MEMBER ("+COLUMNS+")" + 
+		String sql = " INSERT INTO MEMBER ("+COLUMNS1+")" + 
 				" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		i = jdbcTemplate.update(sql, 	 
 				memberDTO.getUserId(),
@@ -58,22 +64,50 @@ public class MemberDAO {
 				memberDTO.getUserEmail(), 
 				memberDTO.getUserAddr(),
 				memberDTO.getUserPh1(),
-				memberDTO.getUserPh2());
-		memberDTO.getUserRegist();
+				memberDTO.getUserPh2());	   
 		return i;
 	} 
 
 	//RowMapper select 하기위에 만들어진것.
 	public MemberDTO selectByUserId(MemberDTO memberDTO) {
-		
-		String sql = " select "+ COLUMNS + " form member where user_Id = ? ";
+
+		String sql = " select "+ COLUMNS +" from member where user_Id = ? ";
 
 		List<MemberDTO> results = jdbcTemplate.query(
-															sql,memRowMapper,memberDTO.getUserId());
+				sql,memRowMapper,memberDTO.getUserId());
 
 		return results.isEmpty() ? null: results.get(0);
-				
-		}
+
 	}
+
+	public List<MemberDTO> selectList(){
+		String sql = "select "+ COLUMNS +" from member " ;
+		
+		List<MemberDTO> results = jdbcTemplate.query(sql, memRowMapper);
+												
+		
+		
+		return results;
+	}
+	
+	public int count() {
+		String sql = " select count(*) from member ";
+		 
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
 
 

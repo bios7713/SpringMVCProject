@@ -26,11 +26,12 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(LoginCommand loginCommand,Errors errors , HttpSession session) {
 			new LoginCommandValidator().validate(loginCommand, errors);
+			authService.authenticate(loginCommand, session ,errors);
 			if(errors.hasErrors()) {
 				return "main";				
 			}
-			authService.authenticate(loginCommand, session ,errors);
-		return "main";
+		
+			return "redirect:/main";
 	}
 		
 }

@@ -7,11 +7,7 @@ import org.springframework.validation.Validator;
 import Command.Member.LoginCommand;
 
 public class LoginCommandValidator implements Validator{
-			
-	
-	
-	
-	
+
 	//타겟이 내가 원하는 객체인지 확인할때
 	
 	public boolean supports(Class<?> clazz) {
