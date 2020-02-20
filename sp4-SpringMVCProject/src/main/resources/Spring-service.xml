@@ -8,7 +8,12 @@
                     <bean id="authService" class="Service.Member.AuthService" />
   					<bean id="memberDetailService" class="Service.Member.MemberDetailService" />
                     <bean id = "memberListService" class="Service.Member.MemberListService" />
+                    <bean id ="memberModifyService" class="Service.Member.MemberModifyService" />
+                    <bean id ="pwModifyService" class = "Service.Member.PwModifyService" />
+                    <bean id ="passwordModifyService" class="Service.Member.PasswordModifyService" />
+                    <bean id= "mainService" class="Service.Member.MainService" />
                     
                     <bean id="boardListService" class="Service.Board.BoardListService" />
                     <bean id="boardWriteService" class="Service.Board.BoardWriteService" />
+                    <bean id="boardDeailService" class="Service.Board.BoardDetailService" />
 </beans>

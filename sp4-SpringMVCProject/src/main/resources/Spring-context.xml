@@ -16,7 +16,7 @@
               <mvc:default-servlet-handler/>
               <mvc:view-resolvers>
               		<mvc:jsp prefix="/WEB-INF/view/" />              		
-              </mvc:view-resolvers>         
+              </mvc:view-resolvers>       
                
                <bean id="messageSource" 
                         class="org.springframework.context.support.ResourceBundleMessageSource" >
@@ -28,6 +28,18 @@
                		</property>
                		<property name="defaultEncoding" value="UTF-8" />
                </bean>
+               
+           <mvc:interceptors >
+           				<mvc:interceptor>
+           					<mvc:mapping path="/edit/**"/>
+							<bean class="Interceptor.AuthCheckInterceptor"/>		           				
+           				</mvc:interceptor>
+           
+           
+           
+           </mvc:interceptors>
+               
+               
  
  
  </beans>

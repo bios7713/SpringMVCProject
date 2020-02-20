@@ -47,7 +47,7 @@
 				&nbsp;
 				▶
 				▶
-			<a href="./BoardDetailAction.lb?num=${board.boardNum}">
+			<a href="<c:url value='/board/boardDetail/${board.boardNum}' />" >
 				${board.boardSubject }
 			</a>
 

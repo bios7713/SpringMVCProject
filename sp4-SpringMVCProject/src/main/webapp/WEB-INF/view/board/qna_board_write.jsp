@@ -6,11 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<script language="javascript">
-	function addboard(){
-		boardform.submit();
-	}
-	</script>
 </head>
 <body>
 <form:form action="boardWritePro" method="post" name="boardform" 

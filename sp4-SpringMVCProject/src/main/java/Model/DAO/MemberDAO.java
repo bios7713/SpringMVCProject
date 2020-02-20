@@ -11,8 +11,11 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 
+import Command.Member.ChangePwdCommand;
 import Model.DTO.MemberDTO;
 
 
@@ -49,8 +52,31 @@ public class MemberDAO {
 			return member;
 		}
 	};
-
-
+	public Integer pwUpdate(String newPw, String userId, String pw ) {
+		
+				String sql=" update member set user_pw =? where "
+						+     "  user_id = ? and user_Pw =?";
+								
+		   return jdbcTemplate.update(sql,newPw , userId , pw );		
+	}
+	
+	public Integer memberModify(MemberDTO memberDTO) {
+	String sql = "update member set user_email= ?,"
+			+ " user_ph1 = ?, user_ph2= ?, user_addr = ?"
+				+" where user_id = ? and user_pw = ?";
+	      Integer i =  jdbcTemplate.update(sql , 
+				memberDTO.getUserEmail(),
+				memberDTO.getUserPh1(),
+				memberDTO.getUserPh2(),
+				memberDTO.getUserAddr(),
+				memberDTO.getUserId(),
+				memberDTO.getUserPw()
+				);
+	      return i;
+	}
+	
+	
+	
 	public Integer insertMember ( MemberDTO memberDTO) {
 		Integer i = 0;
 		String sql = " INSERT INTO MEMBER ("+COLUMNS1+")" + 

@@ -1,5 +1,7 @@
 package Service.Member;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,17 @@ public class AuthService {
 	private MemberDAO memberDAO;	
 	private AuthInfo authInfo;
 	
-	public void authenticate(LoginCommand loginCommand, HttpSession session , Errors errors) {
+	public void authenticate(LoginCommand loginCommand,Errors errors , HttpSession session, HttpServletResponse response) {
 		MemberDTO memberDTO = new MemberDTO();
+		
+		Cookie idCookie = new Cookie("idCookie", loginCommand.getId1());
+		if(loginCommand.getIdStore()) {			
+			idCookie.setMaxAge(60*60 *12);			
+		}else {
+			idCookie.setMaxAge(0);
+		}
+		response.addCookie(idCookie);
+		
 		
 		memberDTO.setUserId(loginCommand.getId1());
 		memberDTO.setUserPw(  
@@ -29,8 +40,7 @@ public class AuthService {
 		
 		 memberDTO = memberDAO.selectByUserId(memberDTO);
 		 
-		 try {
-			 
+		 try {			 
 			 authInfo = new AuthInfo(
 				 		memberDTO.getUserId(),
 				 		memberDTO.getUserEmail(),
@@ -40,13 +50,21 @@ public class AuthService {
 			 
 			if(authInfo.getPw().equals(
 					 Encrypt.getEncryption(loginCommand.getPw()))){
-				 session.setAttribute("authInfo", authInfo);				 
+			
+				 Cookie autoCookie = new Cookie("autoCookie", loginCommand.getId1());
+					if(loginCommand.getIdStore()) {			
+						autoCookie.setMaxAge(60*60 *12);			
+					}else {
+						autoCookie.setMaxAge(0);
+					}
+					response.addCookie(autoCookie);
+					
+						 session.setAttribute("authInfo", authInfo);	
+				 
 			 }else {				 
 				 System.out.println("비밀번호가 다른데 ?");
 				 errors.rejectValue("pw","wrong");
-			 }
-		 
-				 
+			 }		 
 		 }catch(Exception e) {
 			 e.printStackTrace();
 			 System.out.println("아이디 없는데?");

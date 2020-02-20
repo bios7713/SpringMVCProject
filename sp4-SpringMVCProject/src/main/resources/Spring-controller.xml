@@ -4,15 +4,22 @@
                xsi:schemaLocation="http://www.springframework.org/schema/beans 
                                             http://www.springframework.org/schema/beans/spring-beans.xsd" >
 
-                  <bean class="Controller.Member.MemberController" />
+                    <bean class="Controller.Member.MemberController" />
                     <bean class="Controller.Member.LoginController" />
                     <bean class="Controller.Member.MainController" /> 
                     <bean class="Controller.Member.LogoutController" />
                     <bean class="Controller.Member.MemberListController" />
                     <bean class="Controller.Member.MemberInfoController" />
+                    <bean class="Controller.Member.MemberModifyController" />
+                    <bean class="Controller.Member.MemberPasswordController"/>
+                    <bean class="Controller.Member.PwModifyProController" />
+                    
+                    
                     
                     <bean class="Controller.Board.BoardListController" />                 
  					<bean class="Controller.Board.BoardWriteController" />
+ 					<bean class="Controller.Board.BoardDetailController" />
+ 					
  					
 
    </beans>

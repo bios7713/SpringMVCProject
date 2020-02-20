@@ -15,15 +15,14 @@ public class MemberInfoController {
 	@Autowired
 	private MemberDetailService memberDetailService;
 	
-		@RequestMapping("/member/memberInfo/{aa}")
-		public String memberInfo (@PathVariable("aa") String userId , Model model) {
+		@RequestMapping("/edit/memberInfo/{abc}")
+		public String memberInfo (@PathVariable("abc") String userId , Model model) {
 			try {
 				 memberDetailService.memberDetail(userId ,model);			
-				return "redirect:/member/memberInfo";
 				
+				return "member/memberInfo";
 			}catch(Exception e) {				
-				
-			
+	
 				e.printStackTrace();
 				return "redirect:/member/memberList";					
 			}
