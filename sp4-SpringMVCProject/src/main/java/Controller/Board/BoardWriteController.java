@@ -18,25 +18,23 @@ public class BoardWriteController {
   private BoardWriteService boardWriteService;
   
   @RequestMapping("/board/boardWrite")
-  public String boardWrite(BoardCommand boardCommand ) {
+  public String boardWrite(BoardCommand boardCommand) {
  
 	  return "board/qna_board_write";
   }
   @RequestMapping(value= "/board/boardWritePro" , method = RequestMethod.POST)
   public String boardWritePro(BoardCommand boardCommand ,
 		                                 HttpServletRequest request, HttpSession session) {
-	  Integer i = 0;
+	 
 	  try {	 
-		 
-		  i =  boardWriteService.insertBoard(boardCommand, request, session);
+		 // DB >> DAO >> Service 만들어야댐...
+		  //service = Controller의 의존객체
+		  //DAO = service의 의존객체
+		  boardWriteService.insertBoard(boardCommand, request, session);
 		  return "redirect:/board/boardList";
 		  
 	  }catch(Exception e) {	  
-		  System.out.println("boardname" + boardCommand.getBOARD_NAME());
-		  System.out.println("boardPass" + boardCommand.getBOARD_PASS());
-		  System.out.println("boardContent" + boardCommand.getBOARD_CONTENT());
-		  System.out.println("boardSubject" + boardCommand.getBOARD_SUBJECT());
-		  
+	
 		  e.printStackTrace();
 		  return "board/qna_board_write";		  
 	  }	 

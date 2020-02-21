@@ -16,9 +16,15 @@
                     
                     
                     
+                    
+        
+                    
+                    
+                    
                     <bean class="Controller.Board.BoardListController" />                 
  					<bean class="Controller.Board.BoardWriteController" />
  					<bean class="Controller.Board.BoardDetailController" />
+ 					<bean class="Controller.Board.BoardModifyController" />
  					
  					
 

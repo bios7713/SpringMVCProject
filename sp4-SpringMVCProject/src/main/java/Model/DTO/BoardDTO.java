@@ -13,7 +13,9 @@ public class BoardDTO {
 	Timestamp boardDate;
 	String ipAddr;
 	Integer readCount;
-	
+	Long fileSize;
+	String originalFileName;
+	String storeFileName;
 	public String getIpAddr() {
 		return ipAddr;
 	}

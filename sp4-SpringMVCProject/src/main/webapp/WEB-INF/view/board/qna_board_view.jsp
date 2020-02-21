@@ -72,12 +72,15 @@
 			<a href="">
 			[답변]
 			</a>&nbsp;&nbsp;
-			<a href="../board/boardModify/${boards.boardNum}">
+			
+			<a href="../boardModify?num=${boards.boardNum}"  >
 			[수정]
 			</a>&nbsp;&nbsp;
+			
 			<a href="../board/boardDel/=${boards.boardNum}">
 			[삭제]
 			</a>&nbsp;&nbsp;
+			
 			<a href="../../board/boardList">[목록]</a>&nbsp;&nbsp;
 			</font>
 		</td>

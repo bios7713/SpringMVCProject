@@ -12,7 +12,7 @@ import Service.Member.MemberDetailService;
 import Service.Member.MemberModifyService;
 import Validator.MemberModifyValidator;
 
-@Controller
+@Controller 
 public class MemberModifyController {
 	@Autowired
 	private MemberDetailService 	memberDetailService;
@@ -22,7 +22,7 @@ public class MemberModifyController {
 	@RequestMapping( value= "/edit/memberModify")
 	public String memberModify(@RequestParam(value="id")String userId ,Model model,
 							MemberCommand memberCommand ){
-
+		System.out.println("member: " + memberCommand.getUserId());
 		memberDetailService.memberDetail(userId, model);
 		
 		return "member/memberModify";

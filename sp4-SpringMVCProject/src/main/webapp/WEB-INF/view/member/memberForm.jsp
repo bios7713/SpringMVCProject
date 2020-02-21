@@ -19,7 +19,7 @@
  	<tr>
  		<td width = "200">사용자 ID</td>
  		<td width = "400">
- 		<form:input path="userId" name="userId" size = "12" maxlength="10" id="userId" />
+ 		<form:input path="userId" size = "12" maxlength="10" id="userId" />
  		<form:errors path="userId"/>
  	</tr>
  	<tr>

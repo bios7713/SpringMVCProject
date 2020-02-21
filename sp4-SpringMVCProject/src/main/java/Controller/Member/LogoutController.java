@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LogoutController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session , HttpServletResponse response) {
-		Cookie autoCookie = new Cookie ("AutoCookie", " ");
+		Cookie autoCookie = new Cookie ("AutoCookie", "adad");
 		autoCookie.setMaxAge(0);
 		response.addCookie(autoCookie);
 		session.invalidate();	

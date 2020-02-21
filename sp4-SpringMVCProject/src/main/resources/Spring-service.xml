@@ -16,4 +16,5 @@
                     <bean id="boardListService" class="Service.Board.BoardListService" />
                     <bean id="boardWriteService" class="Service.Board.BoardWriteService" />
                     <bean id="boardDeailService" class="Service.Board.BoardDetailService" />
+                    <bean id="boardModifyService" class="Service.Board.BoardModifyService" />
 </beans>

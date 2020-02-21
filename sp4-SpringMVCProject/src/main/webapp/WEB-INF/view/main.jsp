@@ -50,7 +50,7 @@
  <a href="logout">로그아웃</a>
  <a href="member/memberList">회원리스트</a>
  <a href="board/boardList">공지사항 게시판</a>
- <a href="library">일반 자료실</a>
+ <a href="library/libraryList">일반 자료실</a>
  <a href="answerBoard">답변형 게시판</a>
  <a href="commentBoard">댓글 게시판</a>
  <a href="goodsList">상품목록</a>

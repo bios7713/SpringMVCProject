@@ -20,9 +20,9 @@ public class BoardDAO {
 
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
+
 	private RowMapper<BoardDTO> boardRowMapper = 		
-		    new RowMapper<BoardDTO>() {
+			new RowMapper<BoardDTO>() {
 		public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 			BoardDTO boardDTO  = new BoardDTO();
 			boardDTO.setBoardNum(rs.getInt("board_num"));
@@ -31,25 +31,50 @@ public class BoardDAO {
 			boardDTO.setBoardSubject(rs.getString("board_subject"));
 			boardDTO.setBoardContent(rs.getString("board_content"));
 			boardDTO.setBoardDate(rs.getTimestamp("board_date"));
-			boardDTO.setIpAddr(rs.getString("ip_addr"));						
-			return boardDTO; } };
-			
-			
-			
-	public BoardDTO selectBoardNum(BoardDTO boardDTO) {
-		String sql= " select board_num, user_id, board_name, board_subject, " + 
-				         " board_content, board_date, ip_addr from board where board_num = ? " ;
-		List<BoardDTO> results = jdbcTemplate.query(
-				                                sql,boardRowMapper,boardDTO.getBoardNum());
-		
-		return results.isEmpty() ? null : results.get(0);
+			boardDTO.setIpAddr(rs.getString("ip_addr"));
+			boardDTO.setBoardPass(rs.getString("board_pass"));					
+			return boardDTO; 
+		} 
+	};
+
+
+	public Integer boardModify(BoardDTO boardDTO) {
+		String sql = " update board set board_subject= ?, "
+				+        " board_content = ?, board_num= ? "
+				+        " where board_pass  = ? ";
+
+		Integer i= jdbcTemplate.update(sql, 
+				boardDTO.getBoardSubject(),
+				boardDTO.getBoardContent(),
+				boardDTO.getBoardNum(),
+				boardDTO.getBoardPass()				
+				);
+		return i;		
 	}
 
-	public List<BoardDTO> boardListSelect() {
-		String sql = " select board_num, user_id, board_name, board_subject, "
-				+        " board_content, board_date, ip_addr from board " ;
 
-		List<BoardDTO > result = jdbcTemplate.query(sql, new RowMapper<BoardDTO>() {
+	public BoardDTO selectBoardNum(BoardDTO boardDTO) {
+		String sql= " select board_num, user_id, board_name, board_subject, " + 
+				" board_content, board_date, ip_addr, board_pass from board where board_num = ? " ;
+		List<BoardDTO> results = jdbcTemplate.query(
+				sql,boardRowMapper,boardDTO.getBoardNum());
+
+		return results.isEmpty() ? null : results.get(0);
+	}
+	//boardListService에서 List<BoardDTO> 를 반환해준다..?
+
+	public List<BoardDTO> boardListSelect(int page , int limit) {
+		String sql =  " select * "     				
+				       +  " form  ( select rownum rn, select board_num, user_id, board_name, board_subject,"   
+				       +  " board_content, board_date, ip_addr " 				
+				       +  " form ( select board_num, user_id, board_name, board_subject, "
+				       +  " board_content, board_date, ip_addr from board order by board_num desc ))" 
+				       
+				       +  " rn >= ? and rn <= ? ";
+		int startrow = ( page -1) * limit +1;
+		int endrow = startrow + limit -1;
+		
+		List<BoardDTO >  DTOlist = jdbcTemplate.query(sql, new RowMapper<BoardDTO>() {
 			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 				BoardDTO boardDTO = new BoardDTO();
 				boardDTO.setBoardNum(rs.getInt("board_num"));
@@ -63,22 +88,22 @@ public class BoardDAO {
 			}
 		});
 
-		return result;
+		return DTOlist;
 	}
-	public Integer insertBoard(BoardDTO boardDTO) {
-		Integer i= 0;
-		String sql=" insert into Board (board_num, user_id, board_name, board_pass, board_subject,"
-				+ "    board_content, board_date, ip_addr, read_count )"
-				+ "values(num_seq.nextval,?,?,?,?,?,default,?,0)";
-		 
-		i = jdbcTemplate.update(sql, 
+	public void insertBoard(BoardDTO boardDTO) {
+
+		String sql=" insert into Board ( board_num, user_id, board_name, board_pass, board_subject,"
+				+" board_content, board_date, ip_addr, read_count )"
+				+" values(num_seq.nextval,?,?,?,?,?,default,?,0)";
+
+		jdbcTemplate.update(sql, 
 				boardDTO.getUserId(),
 				boardDTO.getBoardName(),
 				boardDTO.getBoardPass(),
 				boardDTO.getBoardSubject(),
 				boardDTO.getBoardContent(),
 				boardDTO.getIpAddr());
-		return i;
+
 	}
 
 

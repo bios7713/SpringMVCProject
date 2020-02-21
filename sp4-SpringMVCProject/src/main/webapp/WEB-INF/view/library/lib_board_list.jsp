@@ -79,7 +79,7 @@
 
 				<a href="#"></a>&nbsp;
 			[다음]
-			<a href="/boardList?page=">[다음]</a>
+			<a href="./BoardList.bd?page=">[다음]</a>
 
 		</td>
 	</tr>

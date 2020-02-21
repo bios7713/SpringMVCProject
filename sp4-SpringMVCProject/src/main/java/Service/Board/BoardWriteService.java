@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import Command.Board.BoardCommand;
+import Controller.Encrypt;
 import Model.DAO.BoardDAO;
 import Model.DTO.AuthInfo;
 import Model.DTO.BoardDTO;
@@ -19,34 +21,20 @@ public class BoardWriteService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
-	public Integer insertBoard(BoardCommand boardCommand ,
-			              HttpServletRequest request , HttpSession session) {
-		Integer result =0;
+	public void insertBoard(BoardCommand boardCommand ,
+			              HttpServletRequest request , HttpSession session) {		
 		BoardDTO boardDTO = new BoardDTO();
 		
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		
 		boardDTO.setUserId(authInfo.getId());
-		boardDTO.setBoardName(boardCommand.getBOARD_NAME());
-		boardDTO.setBoardPass(boardCommand.getBOARD_PASS());
-		boardDTO.setBoardSubject(boardCommand.getBOARD_SUBJECT());
-		boardDTO.setBoardContent(boardCommand.getBOARD_CONTENT());
+		boardDTO.setBoardName(boardCommand.getBoardName());
+		boardDTO.setBoardPass(Encrypt.getEncryption(boardCommand.getBoardPass()));
+		boardDTO.setBoardSubject(boardCommand.getBoardSubject());
+		boardDTO.setBoardContent(boardCommand.getBoardContent());
 		boardDTO.setIpAddr(request.getRemoteAddr());
-		
-		
-		result = boardDAO.insertBoard(boardDTO);
-		return result;
-		
-		
-		//boardDTO.setIpAddr( );
-		
-		
-//		pstmt.setString(1, dto.getUserId());
-//		pstmt.setString(2, dto.getBoardName());
-//		pstmt.setString(3, dto.getBoardPass());
-//		pstmt.setString(4, dto.getBoardSubject());
-//		pstmt.setString(5, dto.getBoardContent());
-//		pstmt.setString(6, dto.getIpAddr());
+			
+		 boardDAO.insertBoard(boardDTO);
 		
 		
 	}

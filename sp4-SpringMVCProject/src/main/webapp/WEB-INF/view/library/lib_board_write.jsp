@@ -10,7 +10,7 @@
 <body>
 <form:form action="boardWritePro" method="post" name="boardform" 
                                                                            commandName="boardCommand">
-<form:hidden path="boardNum" value=""/>
+<input type="hidden" name="boardnum" value="${board.boardNum }"/>
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">MVC 게시판</td>
@@ -20,7 +20,7 @@
 			<div align="center">글쓴이</div>
 		</td>
 		<td>
-			<form:input path="boardName" size="10" maxlength="10" 
+			<form:input path="BOARD_NAME" size="10" maxlength="10" 
 				value=""/>
 		</td>
 	</tr>
@@ -29,7 +29,7 @@
 			<div align="center">비밀번호</div>
 		</td>
 		<td>
-			<form:password path="boardPass" size="10" maxlength="10" 
+			<form:password path="BOARD_PASS" size="10" maxlength="10" 
 				value=""/>
 		</td>
 	</tr>
@@ -38,7 +38,7 @@
 			<div align="center">제 목</div>
 		</td>
 		<td>
-			<form:input path="boardSubject"  size="50" maxlength="100" 
+			<form:input path="BOARD_SUBJECT"  size="50" maxlength="100" 
 				value=""/>
 		</td>
 	</tr>
@@ -47,7 +47,7 @@
 			<div align="center">내 용</div>
 		</td>
 		<td>
-			<form:textarea path="boardContent" cols="67" rows="15"></form:textarea>
+			<form:textarea path="BOARD_CONTENT" cols="67" rows="15"></form:textarea>
 		</td>
 	</tr>
 	<tr bgcolor="cccccc">

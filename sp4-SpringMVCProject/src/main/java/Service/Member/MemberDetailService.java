@@ -13,7 +13,7 @@ public class MemberDetailService {
 		  private MemberDAO memberDAO;
 		  
 		 public void memberDetail(String userId, Model model) {
-			 System.out.println("service= "+ userId);
+			 System.out.println("Mdetailservice= "+ userId);
 			 MemberDTO memberDTO = new MemberDTO();
 			 memberDTO.setUserId(userId);
 			 memberDTO = memberDAO.selectByUserId(memberDTO);	 
