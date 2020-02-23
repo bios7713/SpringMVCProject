@@ -68,20 +68,34 @@
 		</td>
 		
 	</tr>
+	
+	
 	</c:forEach>
 	<tr align=center height=20>
 		<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-
+		
+		  <c:if test="${nowPage <= 1 }">
 			[이전]&nbsp;
-
-			<a href="">[이전]</a>&nbsp;
-				[1][2][3][4][5][6][7][8][9][10]
-
-				<a href="#"></a>&nbsp;
+ 		  </c:if>
+ 		  
+ 		  <c:if test="${nowPage > 1 }">
+			<a href="/board/boardList?page=${nowPage - 1 }">[이전]</a>&nbsp;
+		  </c:if>
+		
+			<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i"> 
+				<a href="/board/boardList?page=${i }">${i}</a>&nbsp;
+		    </c:forEach>
+		    
+			<c:if test="${nowPage >= maxPage }">	
 			[다음]
-			<a href="/boardList?page=">[다음]</a>
+			</c:if>
+			
+			<c:if test="${nowPage <maxPage }" >
+			<a href="/board/boardList?page=${nowPage + 1 }">[다음]</a>
+			</c:if>
 
 		</td>
+		
 	</tr>
  
 	<tr align="center" valign="middle">

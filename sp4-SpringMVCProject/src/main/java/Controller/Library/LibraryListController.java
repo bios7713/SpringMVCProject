@@ -4,23 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+
+import Service.Library.LibraryListService;
 
 @Controller
-public class LibraryBoardController {
+public class LibraryListController {
+	@Autowired
 	
-	@RequestMapping("library/libraryList")
+	LibraryListService libraryListService;
+	                  
+	@RequestMapping("/library/libraryList")
 	public String libraryList(Model model ) {
+		libraryListService.libraryList(model);
 		
 		
-		
-		return "/library/lib_board_list";
-	}
-	@RequestMapping("library/libraryWrite")
-	public String libraryWrite() {
-		
-		
-	return "/library/lib_boardWrite";	
+		return "/library/board_list";
 	}
 
 }

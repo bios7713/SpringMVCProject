@@ -12,7 +12,7 @@ import Service.Board.BoardListService;
 public class BoardListController {
 	@Autowired
 	BoardListService boardListService;	
-	          //DB의 값을 ListPage로 보내려면 Model이 필요하다 !!
+	          //DB�쓽 媛믪쓣 ListPage濡� 蹂대궡�젮硫� Model�씠 �븘�슂�븯�떎 !!
 	@RequestMapping("/board/boardList")
 	public String boardList(Model model , @RequestParam(value="page" , required = false) Integer page ) {
 		

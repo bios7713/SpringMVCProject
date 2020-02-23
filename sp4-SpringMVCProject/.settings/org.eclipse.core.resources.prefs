@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/Controller/Board/BoardListController.java=UTF-8
+encoding//src/main/java/Model/DAO/BoardDAO.java=UTF-8
+encoding//src/main/java/Service/Board/BoardListService.java=UTF-8
 encoding//src/main/resources/message/error.properties=UTF-8
 encoding//src/main/resources/message/label.properties=UTF-8
 encoding//src/main/webapp/errors/404errorHandler.jsp=UTF-8

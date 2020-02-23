@@ -61,22 +61,25 @@ public class BoardDAO {
 
 		return results.isEmpty() ? null : results.get(0);
 	}
-	//boardListService에서 List<BoardDTO> 를 반환해준다..?
+	//boardListService�뿉�꽌 List<BoardDTO> 瑜� 諛섑솚�빐以��떎..?
 
 	public List<BoardDTO> boardListSelect(int page , int limit) {
-		String sql =  " select * "     				
-				       +  " form  ( select rownum rn, select board_num, user_id, board_name, board_subject,"   
-				       +  " board_content, board_date, ip_addr " 				
-				       +  " form ( select board_num, user_id, board_name, board_subject, "
-				       +  " board_content, board_date, ip_addr from board order by board_num desc ))" 
-				       
-				       +  " rn >= ? and rn <= ? ";
-		int startrow = ( page -1) * limit +1;
-		int endrow = startrow + limit -1;
+		final String sql =  " select * "     				
+				       +  " from ( select rownum rn, board_num, user_id, board_name, board_subject,"   
+				       +  " 	   board_content, board_date, ip_addr " 				
+				       +  " 	   from ( select board_num, user_id, board_name, board_subject, "
+				       +  " 		   	   board_content, board_date, ip_addr from board order by board_num desc ))" 			       
+				       +  " where rn >= ? and rn <= ? ";
 		
-		List<BoardDTO >  DTOlist = jdbcTemplate.query(sql, new RowMapper<BoardDTO>() {
+		final int startrow = ( page -1) * limit +1;
+		final int endrow = startrow + limit -1;
+		System.out.println("DAO Page: " + page);
+		System.out.println("DAO limit: "+ limit);
+	    jdbcTemplate.update(sql,startrow,endrow);
+		List<BoardDTO>  DTOlist = jdbcTemplate.query(sql, new RowMapper<BoardDTO>() {
 			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 				BoardDTO boardDTO = new BoardDTO();
+			
 				boardDTO.setBoardNum(rs.getInt("board_num"));
 				boardDTO.setUserId(rs.getString("user_id"));
 				boardDTO.setBoardName(rs.getString("board_name"));
@@ -84,12 +87,16 @@ public class BoardDAO {
 				boardDTO.setBoardContent(rs.getString("board_content"));
 				boardDTO.setBoardDate(rs.getTimestamp("board_date"));
 				boardDTO.setIpAddr(rs.getString("ip_addr"));
+				
 				return boardDTO;
 			}
 		});
 
 		return DTOlist;
 	}
+	
+
+
 	public void insertBoard(BoardDTO boardDTO) {
 
 		String sql=" insert into Board ( board_num, user_id, board_name, board_pass, board_subject,"
@@ -103,7 +110,17 @@ public class BoardDAO {
 				boardDTO.getBoardSubject(),
 				boardDTO.getBoardContent(),
 				boardDTO.getIpAddr());
+		
 
+	}
+	
+	public int boardCount() {
+		
+		String sql=" select count(*) from board";
+		
+		return  jdbcTemplate.queryForObject(sql, Integer.class);
+		
+		
 	}
 
 

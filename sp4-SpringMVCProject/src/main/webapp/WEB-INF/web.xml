@@ -17,12 +17,13 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				classpath:Spring-context.xml
-				classpath:Spring-beans.xml
-				classpath:Spring-jdbc.xml
-				classpath:Spring-controller.xml
-				classpath:Spring-service.xml
-				<!--  classpath:Spring-Library-Controller.xml -->
+				classpath:spring-context.xml
+				classpath:spring-beans.xml
+				classpath:spring-jdbc.xml
+				classpath:spring-controller.xml
+				classpath:spring-service.xml
+				classpath:spring-library-controller.xml
+				classpath:spring-library-service.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

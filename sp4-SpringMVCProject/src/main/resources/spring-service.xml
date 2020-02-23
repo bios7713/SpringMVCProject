@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                                            http://www.springframework.org/schema/beans/spring-beans.xsd" >
+                
+                    <bean id ="memberJoinService" class= "Service.Member.MemberJoinService" />
+                    <bean id ="authService" class="Service.Member.AuthService" />
+  					<bean id ="memberDetailService" class="Service.Member.MemberDetailService" />
+                    <bean id ="memberListService" class="Service.Member.MemberListService" />
+                    <bean id ="memberModifyService" class="Service.Member.MemberModifyService" />
+                    <bean id ="pwModifyService" class = "Service.Member.PwModifyService" />
+                    <bean id ="passwordModifyService" class="Service.Member.PasswordModifyService" />
+                    <bean id ="mainService" class="Service.Member.MainService" />
+                    
+                    <bean id ="boardListService" class="Service.Board.BoardListService" />
+                    <bean id ="boardWriteService" class="Service.Board.BoardWriteService" />
+                    <bean id ="boardDeailService" class="Service.Board.BoardDetailService" />
+                    <bean id ="boardModifyService" class="Service.Board.BoardModifyService" />
+</beans>

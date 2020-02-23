@@ -5,7 +5,8 @@
                                             http://www.springframework.org/schema/beans/spring-beans.xsd" >
 
    
-  					<bean class="Controller.Library.LibraryController"/>
+  					<bean class="Controller.Library.LibraryListController"/>
+  					<bean class="Controller.Library.LibraryWriteController"/>
    
                                              
   </beans>

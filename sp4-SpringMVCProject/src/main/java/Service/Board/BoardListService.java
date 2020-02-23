@@ -16,21 +16,38 @@ public class BoardListService {
 	
 	
 	public void boardList(Model model , Integer page) {
-		//먼저 DAO에 select메소드를 만듬 .
-		//List는 List로 받아올수있다..
+		//癒쇱� DAO�뿉 select硫붿냼�뱶瑜� 留뚮벉 .
+		//List�뒗 List濡� 諛쏆븘�삱�닔�엳�떎..
 		// request = model ;;		
 		int nowPage = 1;
+		
 		if(page != null) {			
 			nowPage = page;
-        }		
+        }
+		
 		int limit = 10;
 		int limitPage = 10;
 		
+		System.out.println("1page: " + nowPage + " limit: " + limit);
+	    List<BoardDTO> boardDTO = boardDAO.boardListSelect(nowPage, limit);
+	    Integer pageCount = boardDAO.boardCount();
+		System.out.println("2page: " + nowPage + " limit: " + limit);
+		int maxPage = (int)((double)pageCount / limit + 0.95);
+		int startPage = (int)(((double)nowPage /limitPage + 0.95)-1) * limitPage+1;
+		int endPage = startPage + limitPage -1;
+		if(endPage > maxPage) endPage = maxPage;		
+			
 		
-		
-		List<BoardDTO> boardDTO = boardDAO.boardListSelect(page, limit);					
+		System.out.println("3page: " + nowPage + " limit: " + limit);
 		if(boardDTO != null) {
+			
+			model.addAttribute("nowPage" , nowPage);
+			model.addAttribute("maxPage" , maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			
 			model.addAttribute("boards",boardDTO );
+			model.addAttribute("count",pageCount);
 
 		}
 		

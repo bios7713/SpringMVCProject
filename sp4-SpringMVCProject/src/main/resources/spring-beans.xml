@@ -6,4 +6,6 @@
           
                     <bean id="memberDAO" class="Model.DAO.MemberDAO" />
               		<bean id= "boardDAO" class="Model.DAO.BoardDAO" />
+              		<bean id="libraryDAO" class="Model.DAO.LibraryDAO" />
+              		
 </beans>
