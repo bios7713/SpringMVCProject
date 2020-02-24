@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Command.Board.LibraryCommand;
+import Command.Library.LibraryCommand;
 import Controller.Encrypt;
 import Model.DAO.LibraryDAO;
 import Model.DTO.AuthInfo;

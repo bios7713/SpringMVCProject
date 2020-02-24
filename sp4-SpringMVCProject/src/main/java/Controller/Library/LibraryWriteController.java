@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import Command.Board.LibraryCommand;
+import Command.Library.LibraryCommand;
 import Service.Library.LibraryWriteService;
 
 @Controller
@@ -17,8 +17,7 @@ public class LibraryWriteController {
 	private LibraryWriteService libraryWriteService;
 	@RequestMapping("/library/libraryWrite")
 	public String libraryWrite(LibraryCommand libraryCommand) {
-		
-		
+
 		return "/library/board_write";
 				
 	}

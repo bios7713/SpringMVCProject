@@ -1,4 +1,4 @@
-package Command.Board;
+package Command.Library;
 
 public class LibraryCommand {
 	private String boardPass;

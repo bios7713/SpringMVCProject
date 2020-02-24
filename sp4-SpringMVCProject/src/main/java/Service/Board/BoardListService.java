@@ -30,16 +30,16 @@ public class BoardListService {
 		
 		System.out.println("1page: " + nowPage + " limit: " + limit);
 	    List<BoardDTO> boardDTO = boardDAO.boardListSelect(nowPage, limit);
-	    Integer pageCount = boardDAO.boardCount();
+	    int totalCount = boardDAO.boardCount();
 		System.out.println("2page: " + nowPage + " limit: " + limit);
-		int maxPage = (int)((double)pageCount / limit + 0.95);
+		int maxPage = (int)((double)totalCount / limit + 0.95);
 		int startPage = (int)(((double)nowPage /limitPage + 0.95)-1) * limitPage+1;
 		int endPage = startPage + limitPage -1;
 		if(endPage > maxPage) endPage = maxPage;		
 			
 		
 		System.out.println("3page: " + nowPage + " limit: " + limit);
-		if(boardDTO != null) {
+	
 			
 			model.addAttribute("nowPage" , nowPage);
 			model.addAttribute("maxPage" , maxPage);
@@ -47,9 +47,9 @@ public class BoardListService {
 			model.addAttribute("endPage", endPage);
 			
 			model.addAttribute("boards",boardDTO );
-			model.addAttribute("count",pageCount);
+			model.addAttribute("totalcount",totalCount);
 
-		}
+
 		
 		
 	}

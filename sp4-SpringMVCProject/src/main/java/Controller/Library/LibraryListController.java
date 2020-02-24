@@ -15,8 +15,8 @@ public class LibraryListController {
 	LibraryListService libraryListService;
 	                  
 	@RequestMapping("/library/libraryList")
-	public String libraryList(Model model ) {
-		libraryListService.libraryList(model);
+	public String libraryList(Model model , Integer page) {
+		libraryListService.libraryList(model ,page);
 		
 		
 		return "/library/board_list";

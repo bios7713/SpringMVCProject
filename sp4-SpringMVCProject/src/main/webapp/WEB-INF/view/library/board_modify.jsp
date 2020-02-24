@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +14,8 @@
 	</script>
 </head>
 <body>
-<form action="BoardModifyPro.lb" method="post" name="modifyform">
-<input type="hidden" name="boardNum" value="${library.boardNum }">
+<form:form action="libraryModifyPro" method="post" name="modifyform" commandName="librarys">
+<form:hidden path="boardNum" value="${librarys.boardNum }" />
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">MVC 게시판</td>
@@ -23,8 +25,9 @@
 			<div align="center">제 목</div>
 		</td>
 		<td>
-			<input name="boardSubject" size="50" maxlength="100" 
-				value="${library.boardSubject }">
+			<form:input path="boardSubject" size="50" maxlength="100" 
+				value="${librarys.boardSubject }" />
+			<form:errors code="required" />
 		</td>
 	</tr>
 	<tr>
@@ -32,7 +35,8 @@
 			<div align="center">내 용</div>
 		</td>
 		<td>
-			<textarea name="boardContent" cols="67" rows="15">${library.boardContent }</textarea>
+			<form:textarea path="boardContent" cols="67" rows="15" />
+		   <form:errors code="required" />
 		</td>
 	</tr>
 	<tr>
@@ -40,7 +44,7 @@
 			<div align="center">파일 첨부</div>
 		</td>
 		<td>
-${library.storeFileName } / ${library.originalFileName }
+${librarys.originalFileName }/ ${librarys.fileSize }
 
 		</td>
 	</tr>
@@ -49,7 +53,8 @@ ${library.storeFileName } / ${library.originalFileName }
 			<div align="center">비밀번호</div>
 		</td>
 		<td>
-			<input name="boardPass" type="password">
+			<form:password path="boardPass"  />
+			<form:errors code="required" />
 		</td>
 	</tr>
 	
@@ -68,6 +73,6 @@ ${library.storeFileName } / ${library.originalFileName }
 		</td>
 	</tr>
 </table>
-</form>
+</form:form>
 </body>
 </html>

@@ -13,7 +13,7 @@
 	<tr align="center" valign="middle">
 		<td colspan="4">MVC 게시판</td>
 		<td align=right>
-			<font size=2>글 개수 : ${listcount }</font>
+			<font size=2>글 개수 : ${totalCount }</font>
 		</td>
 		
 	</tr>
@@ -48,7 +48,7 @@
 				&nbsp;
 				▶
 				▶
-			<a href="./BoardDetailAction.lb?num=${list.boardNum }"> ${list.boardSubject }
+			<a href="libraryDetail?num=${list.boardNum }"> ${list.boardSubject }
 			</a>
 			</div>
 		</td>
@@ -70,24 +70,29 @@
 </c:forEach>
 	<tr align=center height=20>
 		<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-
+		
+		  <c:if test="${nowPage <= 1 }">
 			[이전]&nbsp;
-
-			<a href="">[이전]</a>&nbsp;
-				[1][2][3][4][5][6][7][8][9][10]
-
-				<a href="#"></a>&nbsp;
+ 		  </c:if>
+ 		  
+ 		  <c:if test="${nowPage > 1 }">
+			<a href="libraryList?page=${nowPage - 1 }">[이전]</a>&nbsp;
+		  </c:if>
+					
+			<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i"> 
+				<a href="libraryList?page=${i}">[${i}]</a>&nbsp;
+		    </c:forEach>
+		    
+			<c:if test="${nowPage >= maxPage }">	
 			[다음]
-			<a href="./BoardList.bo?page=">[다음]</a>
+			</c:if>
+			
+			<c:if test="${nowPage <maxPage }" >
+			<a href="libraryList?page=${nowPage + 1 }">[다음]</a>
+			</c:if>
 
 		</td>
-	</tr>
-
-	<tr align="center" valign="middle">
-		<td colspan="4">MVC 게시판</td>
-		<td align=right>
-			<font size=2>등록된 글이 없습니다.</font>
-		</td>
+		
 	</tr>
 
 	<tr align="right">

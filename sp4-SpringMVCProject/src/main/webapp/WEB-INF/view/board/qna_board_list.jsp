@@ -47,7 +47,7 @@
 				&nbsp;
 				▶
 				▶
-			<a href="<c:url value='/board/boardDetail/${board.boardNum}' />" >
+			<a href="<c:url value='boardDetail/${board.boardNum}' />" >
 				${board.boardSubject }
 			</a>
 
@@ -79,11 +79,11 @@
  		  </c:if>
  		  
  		  <c:if test="${nowPage > 1 }">
-			<a href="/board/boardList?page=${nowPage - 1 }">[이전]</a>&nbsp;
+			<a href="boardList?page=${nowPage - 1 }">[이전]</a>&nbsp;
 		  </c:if>
 		
 			<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i"> 
-				<a href="/board/boardList?page=${i }">${i}</a>&nbsp;
+				<a href="boardList?page=${i }">${i}</a>&nbsp;
 		    </c:forEach>
 		    
 			<c:if test="${nowPage >= maxPage }">	
@@ -91,7 +91,7 @@
 			</c:if>
 			
 			<c:if test="${nowPage <maxPage }" >
-			<a href="/board/boardList?page=${nowPage + 1 }">[다음]</a>
+			<a href="boardList?page=${nowPage + 1 }">[다음]</a>
 			</c:if>
 
 		</td>

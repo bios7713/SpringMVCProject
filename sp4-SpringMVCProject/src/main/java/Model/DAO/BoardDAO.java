@@ -30,6 +30,7 @@ public class BoardDAO {
 			boardDTO.setBoardName(rs.getString("board_name"));
 			boardDTO.setBoardSubject(rs.getString("board_subject"));
 			boardDTO.setBoardContent(rs.getString("board_content"));
+			boardDTO.setBoardPass(rs.getString("board_pass"));
 			boardDTO.setBoardDate(rs.getTimestamp("board_date"));
 			boardDTO.setIpAddr(rs.getString("ip_addr"));
 			boardDTO.setBoardPass(rs.getString("board_pass"));					
@@ -64,18 +65,18 @@ public class BoardDAO {
 	//boardListService�뿉�꽌 List<BoardDTO> 瑜� 諛섑솚�빐以��떎..?
 
 	public List<BoardDTO> boardListSelect(int page , int limit) {
-		final String sql =  " select * "     				
+	    String sql =  " select * "     				
 				       +  " from ( select rownum rn, board_num, user_id, board_name, board_subject,"   
-				       +  " 	   board_content, board_date, ip_addr " 				
+				       +  " 	   board_content,  board_pass,board_date, ip_addr " 				
 				       +  " 	   from ( select board_num, user_id, board_name, board_subject, "
-				       +  " 		   	   board_content, board_date, ip_addr from board order by board_num desc ))" 			       
+				       +  " 		   	   board_content, board_pass, board_date, ip_addr from board order by board_num desc ))" 			       
 				       +  " where rn >= ? and rn <= ? ";
 		
-		final int startrow = ( page -1) * limit +1;
-		final int endrow = startrow + limit -1;
+		int startrow = ( page -1) * limit +1;
+		int endrow = startrow + limit -1;
 		System.out.println("DAO Page: " + page);
 		System.out.println("DAO limit: "+ limit);
-	    jdbcTemplate.update(sql,startrow,endrow);
+	  
 		List<BoardDTO>  DTOlist = jdbcTemplate.query(sql, new RowMapper<BoardDTO>() {
 			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 				BoardDTO boardDTO = new BoardDTO();
@@ -90,7 +91,7 @@ public class BoardDAO {
 				
 				return boardDTO;
 			}
-		});
+		} , startrow,endrow);
 
 		return DTOlist;
 	}
@@ -114,9 +115,9 @@ public class BoardDAO {
 
 	}
 	
-	public int boardCount() {
+	public Integer boardCount() {
 		
-		String sql=" select count(*) from board";
+		String sql=" select count(*) from board ";
 		
 		return  jdbcTemplate.queryForObject(sql, Integer.class);
 		
