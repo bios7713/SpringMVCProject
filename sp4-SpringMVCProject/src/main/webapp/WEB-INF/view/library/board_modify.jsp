@@ -14,8 +14,8 @@
 	</script>
 </head>
 <body>
-<form:form action="libraryModifyPro" method="post" name="modifyform" commandName="librarys">
-<form:hidden path="boardNum" value="${librarys.boardNum }" />
+<form:form action="libraryModifyPro" method="post" name="modifyform" commandName="libraryCommand">
+<form:hidden path="boardNum" />
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">MVC 게시판</td>
@@ -42,7 +42,7 @@
 			<div align="center">파일 첨부</div>
 		</td>
 		<td>
-${librarys.originalFileName }/ ${librarys.fileSize }
+${libraryCommand.originalFileName }/ ${libraryCommand.fileSize }
 
 		</td>
 	</tr>

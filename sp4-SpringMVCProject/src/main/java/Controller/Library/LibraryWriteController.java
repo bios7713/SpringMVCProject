@@ -12,21 +12,23 @@ import Command.Library.LibraryCommand;
 import Service.Library.LibraryWriteService;
 
 @Controller
+@RequestMapping("/library/libraryWrite")
 public class LibraryWriteController {
 	@Autowired
 	private LibraryWriteService libraryWriteService;
-	@RequestMapping("/library/libraryWrite")
+	@RequestMapping(method = RequestMethod.GET)
 	public String libraryWrite(LibraryCommand libraryCommand) {
 
 		return "/library/board_write";
 				
 	}
-	@RequestMapping(value="/library/libraryWritePro" , method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String libraryWritePro(LibraryCommand libraryCommand, HttpSession session, HttpServletRequest request) {
 		
-		libraryWriteService.libraryWrite(libraryCommand, session, request);
+		
 	
-		return "redirect:/library/libraryList";
-	}
+	 return
+	 libraryWriteService.libraryWrite(libraryCommand, session, request);
+	} 
 	
 }

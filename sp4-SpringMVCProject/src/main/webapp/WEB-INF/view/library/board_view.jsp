@@ -14,8 +14,8 @@
 		<td colspan="2">MVC 게시판</td>
 	</tr>
 	<tr align="left" valign="middle">
-		<td colspan="2">글쓴이: ${librarys.boardName } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		                  ${librarys.ipAddr }</td>
+		<td colspan="2">글쓴이: ${libraryCommand.boardName } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		                  ${libraryCommand.ipAddr }</td>
 	
 	<tr>
 		<td style="font-family:돋음; font-size:12" height="16">
@@ -23,7 +23,7 @@
 		</td>
 		
 		<td style="font-family:돋음; font-size:12">
-		    ${librarys.boardSubject }
+		    ${libraryCommand.boardSubject }
 		</td>
 	</tr>
 	
@@ -40,7 +40,7 @@
 			<table border=0 width=490 height=250 style="table-layout:fixed">
 				<tr>
 					<td valign=top style="font-family:돋음; font-size:12">
-			         ${librarys.boardContent }
+			         ${libraryCommand.boardContent }
 					</td>
 				</tr>
 			</table>
@@ -52,8 +52,8 @@
 		</td>
 		<td style="font-family:돋음; font-size:12">
 		
-		<a href="LibraryBoard/update/${librarys.storeFileName }">
-			${librarys.originalFileName }
+		<a href="LibraryBoard/update/${libraryCommand.storeFileName }">
+			${libraryCommand.originalFileName }
 		</a>
 		</td>
 	</tr>
@@ -68,13 +68,13 @@
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<font size=2>
-			<a href="libraryModify?num=${librarys.boardNum }" >
+			<a href="libraryModify?num=${libraryCommand.boardNum }" >
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a href="libraryDelete?num=${librarys.boardNum }">
+			<a href="libraryDelete?num=${libraryCommand.boardNum }">
 			[삭제]
 			</a>&nbsp;&nbsp;
-			<a href="./library.lb">[목록]</a>&nbsp;&nbsp;
+			<a href="libraryList">[목록]</a>&nbsp;&nbsp;
 			</font>
 		</td>
 	</tr>

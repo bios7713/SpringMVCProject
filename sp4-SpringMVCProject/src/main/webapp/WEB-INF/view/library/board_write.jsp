@@ -14,7 +14,8 @@
 	</script>
 </head>
 <body>
-<form:form action="libraryWritePro" method="post" name="libraryform" commandName="libraryCommand">
+<form:form action="libraryWrite" method="post" name="libraryform" 
+	 	 enctype="multipart/form-data"	commandName="libraryCommand">
 <form:hidden path="boardNum" value=""/>
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
@@ -55,18 +56,21 @@
 			<form:textarea path="boardContent" cols="67" rows="15"></form:textarea>
 		</td>
 	</tr>
-<!-- 	<tr> -->
-<!-- 		<td style="font-family:돋음; font-size:12"> -->
-<!-- 			<div align="center">파일 첨부</div> -->
-<!-- 		</td> -->
-<!-- 		<td> -->
-<!-- 			<input name="boardFile" type="file"  /> -->
-<!-- 		</td> -->
-<!-- 	</tr> -->
+	<tr> 
+ 		<td style="font-family:돋음; font-size:12"> 
+ 			<div align="center">파일 </div> 
+ 		</td> 
+ 		<td> 
+ 			<input name="report" type="file" multiple="multiple"  /> 
+ 			<div>${fileError }</div>
+ 		</td> 
+	</tr> 
 	<tr bgcolor="cccccc">
 		<td colspan="2" style="height:1px;">
+		
 		</td>
 	</tr>
+	
 	<tr><td colspan="2">&nbsp;</td></tr>
 	<tr align="center" valign="middle">
 		<td colspan="5">

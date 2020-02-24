@@ -7,10 +7,10 @@
                 
                <bean id ="libraryListService" class="Service.Library.LibraryListService" />
                <bean id ="libraryWriteService" class="Service.Library.LibraryWriteService"/>
-               <bean id ="libraryDetailService" class="Service.Library.LibraryDetailService"/>
-               <!--  
+               <bean id ="libraryDetailService" class="Service.Library.LibraryDetailService"/>               
                <bean id="libraryModifyService" class="Service.Library.LibraryModifyService"/>
-               -->
+               <bean id="libraryDeleteService" class="Service.Library.LibraryDeleteService" />
+               
                
                
                

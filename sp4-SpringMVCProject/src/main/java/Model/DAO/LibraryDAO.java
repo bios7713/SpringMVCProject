@@ -44,13 +44,18 @@ public class LibraryDAO {
 			libraryDTO.setIpAddr(rs.getString("ip_addr"));
 			libraryDTO.setOriginalFileName(rs.getString("original_file_name"));
 			libraryDTO.setStoreFileName(rs.getString("store_file_name"));
-			libraryDTO.setFileSize(rs.getLong("file_size"));
+			libraryDTO.setFileSize(rs.getString("file_size"));
 
 			return libraryDTO;
 		}				
 	};
 
-
+	public Integer libraryDel(String boardNum, String boardPass) {
+		String sql = "delete from libraryboard "
+				+ "	where board_num = ? and board_pass = ?";
+	
+		return jdbcTemplate.update(sql, boardNum, boardPass);
+	}
 
 	public void readCountUpdate(Integer boardNum) {
 		String sql = "update libraryboard set read_count  = +1 "
@@ -70,8 +75,22 @@ public class LibraryDAO {
     }
 
 
+    public Integer libraryUpdate(LibraryDTO libraryDTO) {
+    	
+    	String sql="update libraryboard set board_subject = ? , board_content = ? "
+    			+ "	where board_num =? and board_pass = ? ";	
+   	
+    	return jdbcTemplate.update(sql, 
+    			libraryDTO.getBoardSubject(),
+    			libraryDTO.getBoardContent(),
+    			libraryDTO.getBoardNum(),
+    			libraryDTO.getBoardPass()
+    			);
+    	
+    }
 
-
+    
+    	
 	public List<LibraryDTO> libraryListSelect(int page , int limit) {
 
 		String sql=  " select * "     				

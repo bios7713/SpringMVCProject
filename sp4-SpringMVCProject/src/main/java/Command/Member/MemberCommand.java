@@ -1,5 +1,7 @@
 package Command.Member;
 
+import java.util.Date;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class MemberCommand {
@@ -8,7 +10,7 @@ public class MemberCommand {
 	String userPwCon;
 	String userName;
 	@DateTimeFormat(pattern="yyyyMMdd")
-	String userBirth;
+	Date userBirth;
 	String userGender;
 	String userEmail;
 	String userAddr;
@@ -40,10 +42,10 @@ public class MemberCommand {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserBirth() {
+	public Date getUserBirth() {
 		return userBirth;
 	}
-	public void setUserBirth(String userBirth) {
+	public void setUserBirth(Date userBirth) {
 		this.userBirth = userBirth;
 	}
 	public String getUserGender() {

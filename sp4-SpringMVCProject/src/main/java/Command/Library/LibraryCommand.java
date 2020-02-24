@@ -1,35 +1,18 @@
 package Command.Library;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class LibraryCommand {
 	private String boardPass;
 	private String BoardSubject;
 	private String BoardContent;
-	private String boardNum;
+	private Integer boardNum;
 	private String ipAddr;
 	private String boardName;
-	private String originalFileName;
-	private String storeFileName;
-	private Long fileSize;
+	private MultipartFile [] report;
 	
 	
-	public String getOriginalFileName() {
-		return originalFileName;
-	}
-	public void setOriginalFileName(String originalFileName) {
-		this.originalFileName = originalFileName;
-	}
-	public String getStoreFileName() {
-		return storeFileName;
-	}
-	public void setStoreFileName(String storeFileName) {
-		this.storeFileName = storeFileName;
-	}
-	public Long getFileSize() {
-		return fileSize;
-	}
-	public void setFileSize(Long fileSize) {
-		this.fileSize = fileSize;
-	}
+
 	public String getBoardName() {
 		return boardName;
 	}
@@ -54,10 +37,10 @@ public class LibraryCommand {
 	public void setBoardContent(String boardContent) {
 		BoardContent = boardContent;
 	}
-	public String getBoardNum() {
+	public Integer getBoardNum() {
 		return boardNum;
 	}
-	public void setBoardNum(String boardNum) {
+	public void setBoardNum(Integer boardNum) {
 		this.boardNum = boardNum;
 	}
 	public String getIpAddr() {
@@ -65,6 +48,12 @@ public class LibraryCommand {
 	}
 	public void setIpAddr(String ipAddr) {
 		this.ipAddr = ipAddr;
+	}
+	public MultipartFile [] getReport() {
+		return report;
+	}
+	public void setReport(MultipartFile [] report) {
+		this.report = report;
 	}
 	
 

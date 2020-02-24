@@ -16,7 +16,7 @@ public class LibraryDTO {
 	Integer readCount;
 	String originalFileName;
 	String storeFileName;
-	Long fileSize;
+    String fileSize;	
 	
 
 	public Integer getBoardNum() {
@@ -85,10 +85,10 @@ public class LibraryDTO {
 	public void setStoreFileName(String storeFileName) {
 		this.storeFileName = storeFileName;
 	}
-	public Long getFileSize() {
+	public String getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(Long fileSize) {
+	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
 	}
 }

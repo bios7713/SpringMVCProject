@@ -8,7 +8,8 @@
   					<bean class="Controller.Library.LibraryListController"/>
   					<bean class="Controller.Library.LibraryWriteController"/>
   					<bean class="Controller.Library.LibraryDetailController"/>
-  					<bean class="Controller.Library.LibraryModifyProController"/> 
+  					<bean class="Controller.Library.LibraryModifyProController"/>
+  					<bean class="Controller.Library.LibraryDeleteController" /> 
   					
                                              
   </beans>

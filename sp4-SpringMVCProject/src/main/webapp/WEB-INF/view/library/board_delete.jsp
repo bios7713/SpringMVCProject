@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name="deleteForm" action="#" 
-	method="post">
+<form name="deleteForm" action="libraryDelete" method="post"> 
+<input type="hidden" name="boardNum" value="${num }">
 <table border=1>
 <tr>
 	<td>
 		<font size=2>글 비밀번호 : </font>
+	
 	</td>
 	<td>
 		<input name="boardPass" type="password">
+		<div>
+			${passwordError }		
+		</div>
 	</td>
 </tr>
 <tr>

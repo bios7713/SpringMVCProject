@@ -22,7 +22,7 @@ public class LibraryDetailService {
 		if(num!=1 ) {
 			dto.setBoardContent(dto.getBoardContent().replace("\n", "<br>"));
 		}
-		model.addAttribute("librarys" ,dto);
+		model.addAttribute("libraryCommand" ,dto);
 
 	}
 

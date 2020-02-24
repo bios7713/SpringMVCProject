@@ -21,11 +21,11 @@ public class MemberJoinService {
 	public Integer execute(MemberCommand memberCommand) throws ParseException  {
 		Integer result= 0;
 		MemberDTO memberDTO = new MemberDTO();
-		SimpleDateFormat dt = new SimpleDateFormat("yyyymmdd");
+		
 		
 		memberDTO.setUserAddr(memberCommand.getUserAddr());
-		Date date = dt.parse(memberCommand.getUserBirth());
-		Timestamp userBirth = new Timestamp(date.getTime());
+		Timestamp userBirth = new Timestamp(
+													memberCommand.getUserBirth().getTime());
 		memberDTO.setUserBirth(userBirth);
 		memberDTO.setUserEmail(memberCommand.getUserEmail());
 		memberDTO.setUserGender(memberCommand.getUserGender());
