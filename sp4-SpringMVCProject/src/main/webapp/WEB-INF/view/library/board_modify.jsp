@@ -25,10 +25,8 @@
 			<div align="center">제 목</div>
 		</td>
 		<td>
-			<form:input path="boardSubject" size="50" maxlength="100" 
-				value="${librarys.boardSubject }" />
-			<form:errors code="required" />
-		</td>
+			<form:input path="boardSubject" size="50" maxlength="100"  />
+			<form:errors path="boardSubject"	/></td>
 	</tr>
 	<tr>
 		<td style="font-family:돋음; font-size:12">
@@ -36,7 +34,7 @@
 		</td>
 		<td>
 			<form:textarea path="boardContent" cols="67" rows="15" />
-		   <form:errors code="required" />
+
 		</td>
 	</tr>
 	<tr>
@@ -54,7 +52,7 @@ ${librarys.originalFileName }/ ${librarys.fileSize }
 		</td>
 		<td>
 			<form:password path="boardPass"  />
-			<form:errors code="required" />
+			<form:errors path="boardPass" />
 		</td>
 	</tr>
 	
