@@ -3,10 +3,11 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://www.springframework.org/schema/beans 
                                             http://www.springframework.org/schema/beans/spring-beans.xsd" >
-          
-                    <bean id="memberDAO" class="Model.DAO.MemberDAO" />
-              		<bean id= "boardDAO" class="Model.DAO.BoardDAO" />
-              		<bean id="libraryDAO" class="Model.DAO.LibraryDAO" />
-              		<bean id= "answerBoardDAO" class= "Model.DAO.AnswerBoardDAO"/>
-              		
-</beans>
+     
+     
+     <bean class= "Controller.AnswerBoard.AnswerBoardListController" />
+     <bean class= "Controller.AnswerBoard.AnswerBoardWriteController" />
+
+
+
+    </beans>

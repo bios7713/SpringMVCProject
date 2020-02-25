@@ -18,7 +18,7 @@ public class BoardDAO {
 	@Autowired
 	public BoardDAO(DataSource dataSource) {
 
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	private RowMapper<BoardDTO> boardRowMapper = 		
@@ -110,9 +110,10 @@ public class BoardDAO {
 				boardDTO.getBoardPass(),
 				boardDTO.getBoardSubject(),
 				boardDTO.getBoardContent(),
-				boardDTO.getIpAddr());
+				boardDTO.getIpAddr()
+				);
 		
-
+		
 	}
 	
 	public Integer boardCount() {

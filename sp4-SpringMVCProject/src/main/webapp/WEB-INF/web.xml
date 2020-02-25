@@ -24,6 +24,8 @@
 				classpath:spring-service.xml
 				classpath:spring-library-controller.xml
 				classpath:spring-library-service.xml
+				classpath:spring-answer-controller.xml
+			    classpath:spring-answer-service.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

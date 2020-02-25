@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +9,8 @@
 <body>
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
-		<td colspan="2">MVC 게시판</td>
+		<td colspan="5">MVC 게시판</td>
 	</tr>
-	<tr align="left" valign="middle">
-		<td colspan="2">글쓴이: ${libraryCommand.boardName } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		                  ${libraryCommand.ipAddr }</td>
 	
 	<tr>
 		<td style="font-family:돋음; font-size:12" height="16">
@@ -24,7 +18,7 @@
 		</td>
 		
 		<td style="font-family:돋음; font-size:12">
-		    ${libraryCommand.boardSubject }
+		제목
 		</td>
 	</tr>
 	
@@ -40,8 +34,8 @@
 		<td style="font-family:돋음; font-size:12">
 			<table border=0 width=490 height=250 style="table-layout:fixed">
 				<tr>
-					<td valign=top style="font-family:돋음; font-size:12">		
-			         ${libraryCommand.boardContent }
+					<td valign=top style="font-family:돋음; font-size:12">
+					내용
 					</td>
 				</tr>
 			</table>
@@ -52,15 +46,12 @@
 			<div align="center">첨부파일</div>
 		</td>
 		<td style="font-family:돋음; font-size:12">
-		<c:forEach items="${storeFileName }" var="file" varStatus="status">
-		<a href="../library/update/${file }">${originalFileName[status.index] }
-		</a> / ${fileSize[status.index] }
-		</c:forEach>
 		
+		<a href="파일다운로드">
+			파일명
+		</a>
 		</td>
 	</tr>
-	
-	
 	
 	<tr bgcolor="cccccc">
 		<td colspan="2" style="height:1px;"></td>
@@ -70,13 +61,16 @@
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<font size=2>
-			<a href="libraryModify?num=${libraryCommand.boardNum }" >
+			<a href="">
+			[답변]
+			</a>&nbsp;&nbsp;
+			<a href="./boardModify.ab?num=${board.boardNum }">
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a href="libraryDelete?num=${libraryCommand.boardNum }">
+			<a href="./boardDelete.ab?num=${board.boardNum }">
 			[삭제]
 			</a>&nbsp;&nbsp;
-			<a href="libraryList">[목록]</a>&nbsp;&nbsp;
+			<a href="./answerBoardList.ab">[목록]</a>&nbsp;&nbsp;
 			</font>
 		</td>
 	</tr>

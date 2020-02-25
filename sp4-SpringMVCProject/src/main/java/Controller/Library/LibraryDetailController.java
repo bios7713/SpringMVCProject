@@ -26,6 +26,8 @@ public class LibraryDetailController {
 		
 		libraryDetailService.libraryDeatil(boardNum, model , tableName,1);
 		
+		
+		
 		return "library/board_modify";
 
 	}

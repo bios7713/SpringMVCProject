@@ -47,7 +47,7 @@ public class LibraryWriteService {
 			String original = mf.getOriginalFilename();
 			String originalFileExtension =  original.substring(original.lastIndexOf("."));
 			String store = UUID.randomUUID().toString().replace("-","") + originalFileExtension;
-			String fileSize = Long.toString(mf.getSize());
+			Long fileSize = mf.getSize();
 			
 	         originalTotal += original + "-";
 			 storeTotal += store + "-";

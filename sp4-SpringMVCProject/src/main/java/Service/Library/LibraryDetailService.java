@@ -22,7 +22,15 @@ public class LibraryDetailService {
 		if(num!=1 ) {
 			dto.setBoardContent(dto.getBoardContent().replace("\n", "<br>"));
 		}
-		model.addAttribute("libraryCommand" ,dto);
+	      String[] oriFile = dto.getOriginalFileName().split("-");
+	      String[] strFile = dto.getStoreFileName().split("-");
+	      String[] fileSize = dto.getFileSize().split("-");
+		
+		  model.addAttribute("libraryCommand" ,dto);
+	      model.addAttribute("originalFileName" ,oriFile);
+	      model.addAttribute("storeFileName" ,strFile);
+	      model.addAttribute("fileSize" ,fileSize);
+		
 
 	}
 
