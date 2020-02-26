@@ -7,7 +7,8 @@
      
      
       <bean id = "answerWriteService" class="Service.Answer.AnswerWriteService" />
-     <bean id = "answerListService" class="Service.Answer.AnswerListService" />
-      
+      <bean id = "answerListService" class="Service.Answer.AnswerListService" />
+      <bean id= "answerDetailService" class="Service.Answer.AnswerDetailService" />
+      <bean id= "answerReplyService" class="Service.Answer.AnswerReplyService" />
       
    </beans>

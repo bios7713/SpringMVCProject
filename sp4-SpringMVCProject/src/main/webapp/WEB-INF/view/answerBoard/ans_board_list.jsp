@@ -46,7 +46,7 @@
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
 				▶
-			<a href="BoardDetail?num=${board.boardNum }">${board.boardSubject}</a>
+			<a href="answerDetail/${board.boardNum }">${board.boardSubject}</a>
 			</div>
 		</td>
 		

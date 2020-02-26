@@ -3,14 +3,17 @@ package Command.answerBoard;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AnswerCommand {
-	
+
+	private Integer boardReRef;
+	private Integer boardReLev;
+	private Integer boardReSeq;
 	private String boardPass;
 	private String BoardSubject;
 	private String BoardContent;
 	private Integer boardNum;
 	private String boardName;
 	private MultipartFile [] boardFile;
-	private String ipAddr;
+    
 	
 	public String getBoardPass() {
 		return boardPass;
@@ -48,6 +51,24 @@ public class AnswerCommand {
 	}
 	public void setBoardFile(MultipartFile[] boardFile) {
 		this.boardFile = boardFile;
+	}
+	public Integer getBoardReRef() {
+		return boardReRef;
+	}
+	public void setBoardReRef(Integer boardReRef) {
+		this.boardReRef = boardReRef;
+	}
+	public Integer getBoardReLev() {
+		return boardReLev;
+	}
+	public void setBoardReLev(Integer boardReLev) {
+		this.boardReLev = boardReLev;
+	}
+	public Integer getBoardReSeq() {
+		return boardReSeq;
+	}
+	public void setBoardReSeq(Integer boardReSeq) {
+		this.boardReSeq = boardReSeq;
 	}
 
 

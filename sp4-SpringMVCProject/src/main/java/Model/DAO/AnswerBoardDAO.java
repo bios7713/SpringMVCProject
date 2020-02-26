@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import Model.DTO.AnswerBoardDTO;
 
 public class AnswerBoardDAO {
-	private JdbcTemplate JdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 	private String sql;           
 	private final String COLUMNS = " board_content, board_name, board_pass, ip_addr, user_id, board_subject, "
 		                       	                + " board_num, read_count, board_date, "
@@ -45,16 +45,49 @@ public class AnswerBoardDAO {
 	
 	@Autowired
 	public AnswerBoardDAO(DataSource dataSource) {
-		JdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	
+	
+	public void insertReply(AnswerBoardDTO dto) {
+		sql = "update answerboard "
+			+  " set board_re_seq = board_re_seq + 1 "
+			+  " where board_re_ref = ? and board_re_seq > ?";
+		jdbcTemplate.update(sql,dto.getBoardReRef(), dto.getBoardReSeq());
+		
+		Integer seq = dto.getBoardReSeq() + 1;
+		Integer lev = dto.getBoardReLev() + 1;
+		
+
+		  sql = " insert into answerboard ("+ COLUMNS +") "
+			        + " values (?, ?, ?, ?, ?, ?, num_seq.nextval,"
+			        + " 0,sysdate,?,?,?,?,?,?) ";	      
+	      jdbcTemplate.update(sql,   		  
+	    		  dto.getBoardContent(),
+	    		  dto.getBoardName(),
+	    		  dto.getBoardPass(),
+	    		  dto.getIpAddr(),
+	    		  dto.getUserId(),
+	    		  dto.getBoardSubject(),
+	    		  dto.getOriginalFileName(),
+	    		  dto.getStoreFileName(),
+	    		  dto.getFileSize(),
+	    		  dto.getBoardReRef(),seq,lev
+	    		  );
+		
+		
+		
+	}
+	
+	
+	
 	public List<AnswerBoardDTO> answerAllSelect() {
-		sql = "select " +  COLUMNS + " from answerboard ";
+		sql = "select " +  COLUMNS + " from answerboard "
+			+  "order by board_re_ref DESC, board_re_seq ";
 		
-		 List<AnswerBoardDTO> dto = JdbcTemplate.query(sql,answerBoardRowMap);
-		
-		
-		
+		 List<AnswerBoardDTO> dto = jdbcTemplate.query(sql,answerBoardRowMap);
+
 	return dto;
 	}
 	
@@ -62,7 +95,7 @@ public class AnswerBoardDAO {
 		      sql = " insert into answerboard ("+ COLUMNS +") "
 				        + " values (?, ?, ?, ?, ?, ?, num_seq.nextval,"
 				        + " 0,sysdate,?,?,?, num_seq.currval,0,0) ";	      
-		      JdbcTemplate.update(sql, 
+		      jdbcTemplate.update(sql, 
 		    		  dto.getBoardContent(),
 		    		  dto.getBoardName(),
 		    		  dto.getBoardPass(),
@@ -75,7 +108,17 @@ public class AnswerBoardDAO {
 		    		  );
 		   
 	}
-
+	public AnswerBoardDTO answerDetailSelect(Integer boardNum) {
+		sql = " select " + COLUMNS + "from answerboard "
+				+ " where board_num = ? ";
+		
+		List<AnswerBoardDTO> dto = jdbcTemplate.query(sql,answerBoardRowMap,boardNum);
+				
+				
+		
+		return dto.isEmpty() ? null : dto.get(0);
+		
+	}
 	
 	
 	

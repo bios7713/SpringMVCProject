@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 		</td>
 		
 		<td style="font-family:돋음; font-size:12">
-		제목
+           ${answerCommand.boardSubject }
 		</td>
 	</tr>
 	
@@ -35,7 +36,7 @@
 			<table border=0 width=490 height=250 style="table-layout:fixed">
 				<tr>
 					<td valign=top style="font-family:돋음; font-size:12">
-					내용
+					${answerCommand.boardContent }
 					</td>
 				</tr>
 			</table>
@@ -46,10 +47,11 @@
 			<div align="center">첨부파일</div>
 		</td>
 		<td style="font-family:돋음; font-size:12">
-		
-		<a href="파일다운로드">
-			파일명
-		</a>
+	<c:forEach items="${store}" var="str" varStatus="i">
+		<a href="../../answerBoard/update/${str}">
+		${original[i.index]}
+		</a> <br/>
+		</c:forEach>
 		</td>
 	</tr>
 	
@@ -61,16 +63,16 @@
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<font size=2>
-			<a href="">
+			<a href="../answerReply?num=${answerCommand.boardNum }">
 			[답변]
 			</a>&nbsp;&nbsp;
-			<a href="./boardModify.ab?num=${board.boardNum }">
+			<a href="answerModify?num=${answerCommand.boardNum }">
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a href="./boardDelete.ab?num=${board.boardNum }">
+			<a href="answerDelete?num=${answerCommand.boardNum }">
 			[삭제]
 			</a>&nbsp;&nbsp;
-			<a href="./answerBoardList.ab">[목록]</a>&nbsp;&nbsp;
+			<a href="../answerList">[목록]</a>&nbsp;&nbsp;
 			</font>
 		</td>
 	</tr>
